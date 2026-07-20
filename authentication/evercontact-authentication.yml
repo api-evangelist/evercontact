@@ -1,0 +1,33 @@
+generated: '2026-07-19'
+method: searched
+source: https://www.evercontact.com/api.html
+docs: https://www.evercontact.com/api.html
+summary:
+  types:
+  - http
+  http_schemes:
+  - bearer
+  api_key_in: []
+  oauth2_flows: []
+  notes: >-
+    The REST API authenticates with a bearer token in the Authorization header.
+    Live tokens carry an ec_live_ prefix (a sandbox/test mode is offered). Separately,
+    end-user data access to Google Workspace and Microsoft 365 mailboxes is granted
+    via OAuth consent (validated under Google CASA Tier 2), with instant revocation
+    of the OAuth grant by the user.
+schemes:
+- name: bearerAuth
+  type: http
+  scheme: bearer
+  bearer_format: ec_live_ / ec_test_ prefixed token
+  in: header
+  header: Authorization
+  sources:
+  - https://www.evercontact.com/api.html
+mailbox_authorization:
+  method: oauth2
+  providers:
+  - Google Workspace
+  - Microsoft 365
+  assurance: Google CASA Tier 2
+  revocation: user-initiated, instant
