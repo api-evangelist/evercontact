@@ -1,0 +1,28 @@
+generated: '2026-07-19'
+method: searched
+source: https://www.evercontact.com/api.html
+versioning:
+  scheme: uri-path
+  current: v1
+  docs: https://www.evercontact.com/api.html
+deprecation:
+  policy_url: null
+  sunset_header: null
+  notes: No public deprecation policy or RFC 8594 Sunset/Deprecation header support was found.
+sla:
+  url: https://www.evercontact.com/security.html
+  uptime_target: "99.99%"
+status_page: https://status.evercontact.com
+status_page_provider: Cachet
+status_components:
+- Evercontact.com (Front)
+- Evercontact Tag API
+- Evercontact Merge API
+- Gmail Connector API
+- Contact Merger
+- Office365 analysis service
+status_feeds:
+  rss: https://status.evercontact.com/rss
+  atom: https://status.evercontact.com/atom
+  subscribe: https://status.evercontact.com/subscribe
+deprecated_operations: []

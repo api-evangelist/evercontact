@@ -1,0 +1,29 @@
+generated: '2026-07-19'
+method: derived
+status: candidate
+source: https://www.evercontact.com/api.html
+summary: >-
+  No official hosted or remote MCP server was found for Evercontact (searched the
+  docs, npm @modelcontextprotocol, and MCP registries). This is a CANDIDATE tool
+  list derived from the documented REST API operations, one tool per endpoint, to
+  seed a future MCP server. Not a provider claim.
+server:
+  name: evercontact
+  transport: http
+  url: null
+tools:
+- name: parse_signature
+  description: Extract a structured contact from email signature text.
+  source_operation: POST https://api.evercontact.com/v1/parse
+- name: enrich_contact
+  description: Complete a known contact with verified details.
+  source_operation: POST https://api.evercontact.com/v1/enrich
+- name: get_contact
+  description: Retrieve the canonical deduplicated person record by id.
+  source_operation: GET https://api.evercontact.com/v1/contacts/{id}
+- name: register_webhook
+  description: Register a webhook subscription endpoint for contact events.
+  source_operation: POST https://api.evercontact.com/v1/webhooks
+- name: list_events
+  description: Read the paginated stream of relationship-change events.
+  source_operation: GET https://api.evercontact.com/v1/events

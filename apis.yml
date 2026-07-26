@@ -1,7 +1,16 @@
 aid: evercontact
 name: Evercontact
-description: Evercontact is a company surfaced as a portfolio company of seedcamp and added to the API
-  Evangelist network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+description: >-
+  Evercontact is an AI-powered contact intelligence platform that automatically
+  extracts, enriches, and syncs contact data from email signatures across Google
+  Workspace and Microsoft 365. A multilingual model parses names, titles, phone
+  numbers, and postal addresses from the signature block of every email in 30+
+  languages, deduplicates and enriches the resulting person records, and
+  continuously syndicates clean contacts to CRMs (Salesforce, HubSpot, Pipedrive,
+  Zoho, Microsoft Dynamics, Attio) and address books. Evercontact also exposes a
+  REST API (parse, enrich, contacts, webhooks, events) and a webhook event stream
+  for custom integrations, with SOC 2 Type II, Google CASA Tier 2, and GDPR
+  compliance.
 url: https://raw.githubusercontent.com/api-evangelist/evercontact/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
@@ -9,12 +18,60 @@ x-backed-by:
 - seedcamp
 x-tier: stub
 x-tier-reason: portfolio-lead
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://www.evercontact.com/assets/favicon-32x32.png
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-19'
 tags:
 - Company
-apis: []
+- Contact Management
+- Contact Data
+- Data Enrichment
+- Email
+- Signature Parsing
+- Data Extraction
+- CRM
+apis:
+- name: Evercontact API
+  description: >-
+    REST API that extracts structured contact data from email signature text
+    (parse), completes a known contact with verified details (enrich), retrieves
+    canonical deduplicated person records, registers webhook subscriptions, and
+    streams paginated relationship-change events. Bearer-token authenticated,
+    versioned under /v1, idempotent writes.
+  humanURL: https://www.evercontact.com/api.html
+  baseURL: https://api.evercontact.com
+  tags:
+  - Contact Data
+  - Enrichment
+  - Signature Parsing
+  properties:
+  - type: Authentication
+    url: authentication/evercontact-authentication.yml
+  - type: Conventions
+    url: conventions/evercontact-conventions.yml
+  - type: Idempotency
+    url: conventions/evercontact-conventions.yml
+  - type: Webhooks
+    url: asyncapi/evercontact-webhooks.yml
+  - type: MCPServer
+    url: mcp/evercontact-mcp.yml
+  - type: Lifecycle
+    url: lifecycle/evercontact-lifecycle.yml
+  - type: Conformance
+    url: conformance/evercontact-conformance.yml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
@@ -22,4 +79,55 @@ maintainers:
   email: info@apis.io
 common:
 - type: Website
-  url: http://evercontact.com
+  url: https://www.evercontact.com
+- type: DeveloperPortal
+  url: https://www.evercontact.com/api.html
+- type: Documentation
+  url: https://www.evercontact.com/api.html
+- type: APIReference
+  url: https://www.evercontact.com/api.html
+- type: HowItWorks
+  url: https://www.evercontact.com/how-it-works.html
+- type: Pricing
+  url: https://www.evercontact.com/pricing.html
+- type: SignUp
+  url: https://www.evercontact.com/pricing.html
+- type: Blog
+  url: https://blog.evercontact.com
+- type: Support
+  url: https://www.evercontact.com/contact.html
+- type: StatusPage
+  url: https://status.evercontact.com
+- type: TermsOfService
+  url: https://www.evercontact.com/terms.html
+- type: PrivacyPolicy
+  url: https://www.evercontact.com/privacy.html
+- type: Security
+  url: https://www.evercontact.com/security.html
+- type: Compliance
+  url: https://www.evercontact.com/dpa-compliance.html
+- type: Authentication
+  url: authentication/evercontact-authentication.yml
+- type: Conventions
+  url: conventions/evercontact-conventions.yml
+- type: Idempotency
+  url: conventions/evercontact-conventions.yml
+- type: Webhooks
+  url: asyncapi/evercontact-webhooks.yml
+- type: MCPServer
+  url: mcp/evercontact-mcp.yml
+- type: Lifecycle
+  url: lifecycle/evercontact-lifecycle.yml
+- type: Conformance
+  url: conformance/evercontact-conformance.yml
+- type: DomainSecurity
+  url: security/evercontact-domain-security.yml
+- type: LLMsTxt
+  url: llms/evercontact-llms.txt
+- type: Sandbox
+  url: sandbox/evercontact-sandbox.yml
+x-enrichment:
+  date: '2026-07-19'
+  status: backfilled
+  pass: local-v1
+  note: backfilled from .gitignore signal + verified work evidence

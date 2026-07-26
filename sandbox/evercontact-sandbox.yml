@@ -1,0 +1,17 @@
+generated: '2026-07-19'
+method: searched
+source: https://www.evercontact.com/api.html
+summary: >-
+  Evercontact documents sandbox access and a 14-day free trial (no credit card).
+  Live API tokens carry an ec_live_ prefix, implying a separate test/sandbox token
+  namespace. No published magic test values, test signatures, or fixtures were
+  found on the public docs page, so none are recorded here (no fabrication).
+test_vs_live:
+  live_token_prefix: ec_live_
+  test_token_prefix: null
+  notes: The ec_live_ prefix is published; a corresponding test prefix is implied but not documented.
+free_trial:
+  length_days: 14
+  credit_card_required: false
+sandbox_access: documented ("Free trial and sandbox access available")
+test_values: []

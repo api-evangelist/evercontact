@@ -1,0 +1,57 @@
+generated: '2026-07-19'
+method: searched
+source: https://www.evercontact.com/api.html
+docs: https://www.evercontact.com/api.html
+summary: >-
+  Cross-cutting request/response semantics for the Evercontact REST API, captured
+  from the published API documentation. The API is bearer-authenticated, versioned
+  under a /v1 URI path, idempotent on writes, and rate-limit friendly. Relationship
+  changes are exposed as a paginated event stream and delivered via webhooks.
+authentication:
+  style: bearer-token
+  header: Authorization
+  see: authentication/evercontact-authentication.yml
+versioning:
+  style: uri-path
+  current: v1
+  see: lifecycle/evercontact-lifecycle.yml
+idempotency:
+  supported: true
+  evidence: >-
+    The API documentation states the endpoints are "idempotent" so that repeated
+    delivery of the same request does not create duplicate contact records.
+  header: null
+  notes: >-
+    Idempotency is documented as a property of the write endpoints (parse/enrich);
+    the specific idempotency-key header name is not published on the marketing docs
+    page. Confirm the exact header with the provider before relying on it.
+pagination:
+  style: cursor
+  surface: GET /v1/events
+  response_fields: []
+  notes: >-
+    The events endpoint is documented as a "paginated stream of relationship
+    changes"; page/cursor parameter names are not published on the docs page.
+webhooks:
+  supported: true
+  events:
+  - contact.created
+  - contact.updated
+  - company.linked
+  registration: POST /v1/webhooks
+  see: asyncapi/evercontact-webhooks.yml
+rate_limiting:
+  documented: true
+  notes: >-
+    Endpoints are described as "rate-limit friendly"; specific limits, quotas, and
+    response headers (e.g. X-RateLimit-*) are not published on the docs page.
+error_envelope:
+  format: json
+  notes: >-
+    Responses are JSON; the provider does not publish a formal error-envelope schema
+    or an RFC 9457 problem+json contract on the public docs page.
+data_export:
+  warehouse:
+  - Snowflake
+  - BigQuery
+  notes: Mirroring to Snowflake and BigQuery is offered for warehouse integration.

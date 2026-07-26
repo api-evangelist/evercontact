@@ -1,0 +1,27 @@
+generated: '2026-07-19'
+method: searched
+source: https://www.evercontact.com/api.html
+type: Webhooks
+summary: >-
+  Evercontact delivers real-time relationship changes over webhooks. Consumers
+  register subscription endpoints via POST /v1/webhooks and receive event
+  callbacks; the same changes are also available as a paginated pull stream via
+  GET /v1/events. No AsyncAPI document is published by the provider, so this
+  captures the documented webhook catalog only (never fabricated).
+registration:
+  operation: POST /v1/webhooks
+  base_url: https://api.evercontact.com
+pull_stream:
+  operation: GET /v1/events
+  paginated: true
+events:
+- name: contact.created
+  description: A new canonical person record was created from a parsed signature.
+- name: contact.updated
+  description: An existing person record was enriched or changed.
+- name: company.linked
+  description: A contact was associated with a resolved company/organization record.
+asyncapi_document: null
+notes: >-
+  Payload schemas for these events are not published on the public docs page; only
+  the event names and delivery model are documented.

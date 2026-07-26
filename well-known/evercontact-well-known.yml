@@ -1,0 +1,24 @@
+generated: '2026-07-19'
+method: searched
+host: https://www.evercontact.com
+documents:
+- path: /.well-known/security.txt
+  status: 404
+- path: /.well-known/openid-configuration
+  status: 404
+- path: /.well-known/oauth-authorization-server
+  status: 404
+- path: /.well-known/api-catalog
+  status: 404
+- path: /.well-known/ai-plugin.json
+  status: 404
+- path: /llms.txt
+  status: 404
+notes: >-
+  No /.well-known/ discovery documents were served by www.evercontact.com. The API
+  host api.evercontact.com did not resolve/respond during probing, so its
+  /.well-known/ surface could not be reached. No SecurityTxt found. No canonical
+  WellKnown pointer wired (nothing returned 200).
+api_host_probe:
+  host: api.evercontact.com
+  reachable: false
