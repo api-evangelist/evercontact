@@ -19,21 +19,28 @@ x-backed-by:
 x-tier: stub
 x-tier-reason: portfolio-lead
 accessModel:
-  pricing: unknown
+  pricing: paid
   onboarding: self-serve
-  trial: false
+  trial: true
   try_now: false
   public: false
-  label: Self-serve signup
-  confidence: medium
+  label: Self-serve signup with 14-day free trial; API access is sales-gated
+  confidence: high
   source:
+  - https://www.evercontact.com/pricing.html
+  - https://www.evercontact.com/api.html
   - authentication
-  generated: '2026-07-22'
-  method: derived
+  generated: '2026-08-14'
+  method: searched
+  note: >-
+    The end-user product is self-serve and publicly priced (Daily $149/$199/$249 per
+    year, ContactRescue $159/$259 one-time, 14-day trial with no card). The API is
+    not: keys, reference and sandbox are issued through a "Get API access" form, and
+    no API pricing is published.
 image: https://www.evercontact.com/assets/favicon-32x32.png
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-19'
+modified: '2026-08-14'
 tags:
 - Company
 - Contact Management
@@ -72,6 +79,10 @@ apis:
     url: lifecycle/evercontact-lifecycle.yml
   - type: Conformance
     url: conformance/evercontact-conformance.yml
+  - type: DataModel
+    url: data-model/evercontact-data-model.yml
+  - type: RateLimits
+    url: rate-limits/evercontact-rate-limits.yml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
@@ -126,8 +137,23 @@ common:
   url: llms/evercontact-llms.txt
 - type: Sandbox
   url: sandbox/evercontact-sandbox.yml
+- type: Plans
+  url: plans/evercontact-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/evercontact-rate-limits.yml
+- type: Packages
+  url: packages/evercontact-packages.yml
+- type: DataModel
+  url: data-model/evercontact-data-model.yml
 x-enrichment:
-  date: '2026-07-19'
-  status: backfilled
+  date: '2026-08-14'
+  status: enriched
+  artifacts_added: 4
   pass: local-v1
-  note: backfilled from .gitignore signal + verified work evidence
+  note: >-
+    Plans, rate limits, packages and data model added from the provider's own pages;
+    contract discovery came up empty on every host. Key finding: the published API
+    base URL https://api.evercontact.com does not serve Evercontact - DNS points at
+    an AWS load balancer presenting a certificate for b2b-lb.eu-prod.sonysnacloud.net,
+    TLS fails for conforming clients and the host returns 403. API access itself is
+    sales-gated and the advertised Node/Python/Go SDKs exist in no public registry.
