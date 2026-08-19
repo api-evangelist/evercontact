@@ -1,0 +1,132 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: Evercontact
+providerId: evercontact
+generated: '2026-08-14'
+created: '2026-08-14'
+modified: '2026-08-14'
+method: searched
+source: https://www.evercontact.com/pricing.html
+docs: https://www.evercontact.com/pricing.html
+tags:
+  - Contact Data
+  - Enrichment
+  - Signature Parsing
+description: >-
+  Evercontact publishes two commercial motions on its public pricing page: an
+  annual per-user subscription (Evercontact Daily, three tiers) and a one-time
+  archive recovery job (ContactRescue, two depths). Every Daily tier includes
+  unlimited contact extraction, email validation, real-time updating and both
+  Gmail/Google Workspace and Outlook/Office 365 connectors; the tiers differ on
+  how many conversational emails are analyzed per day, on export destinations and
+  on support level. Enterprise is quoted, not listed. NOTE: no API-specific plan,
+  call quota or per-request price is published anywhere on the site — API access
+  is obtained through a "Get API access" sales form, so these plans price the
+  end-user product, not the REST API.
+plan_count: 5
+currency: USD
+plans:
+  - id: evercontact-daily-solo
+    name: Solo
+    product: Evercontact Daily
+    type: subscription
+    audience: Independents and self-employed professionals
+    price: 149
+    currency: USD
+    period: year
+    billing: annual
+    included:
+      conversational_emails_analyzed_per_day: 10
+      contact_extraction: unlimited
+      real_time_contact_updating: true
+      email_validation: true
+      connectors:
+        - Gmail / Google Workspace
+        - Outlook / Office 365
+    support: Email support, 9am-5pm ET, 5 days/week
+    overage: not published
+  - id: evercontact-daily-pro
+    name: Pro
+    product: Evercontact Daily
+    type: subscription
+    audience: Team collaboration; centralize contacts across an organization
+    price: 199
+    currency: USD
+    period: year
+    billing: annual
+    most_popular: true
+    included:
+      conversational_emails_analyzed_per_day: 30
+      contact_extraction: unlimited
+      csv_export: [MailChimp, Constant Contact, Sparkpost]
+      centralize_data_between_org_users: true
+    support: Dedicated online support, 24/7
+    overage: not published
+  - id: evercontact-daily-team
+    name: Team
+    product: Evercontact Daily
+    type: subscription
+    audience: Scaled teams, usually organizations with more than 50 users
+    price: 249
+    currency: USD
+    period: year
+    billing: annual
+    included:
+      conversational_emails_analyzed_per_day: unlimited
+      contact_extraction: unlimited
+      crm_export: any CRM
+    support: 24/7 online support plus phone support 9am-5pm ET, 5 days/week
+    overage: not published
+  - id: evercontact-contactrescue-2yr
+    name: ContactRescue - 2-Year Recovery
+    product: ContactRescue
+    type: one-time
+    price: 159
+    currency: USD
+    period: one-time
+    included:
+      archive_years_scanned: 2
+      contact_extraction: unlimited
+      export: CSV or CRM
+      connectors:
+        - Gmail
+        - Outlook / Office 365
+      bundled_daily_months: 6
+  - id: evercontact-contactrescue-5yr
+    name: ContactRescue+ - 5-Year Recovery
+    product: ContactRescue
+    type: one-time
+    price: 259
+    currency: USD
+    period: one-time
+    best_value: true
+    included:
+      archive_years_scanned: 5
+      contact_extraction: unlimited
+      export: CSV or CRM
+      bundled_daily_months: 12
+trial:
+  offered: true
+  length_days: 14
+  credit_card_required: false
+  applies_to: New Evercontact Daily accounts only (ContactRescue is not offered on trial)
+  cancel_anytime: true
+enterprise:
+  listed_price: false
+  contact: enterprise@evercontact.com
+  url: https://www.evercontact.com/enterprise.html
+  includes:
+    - Volume licensing and central billing
+    - SSO (SAML) and SCIM provisioning via Okta, Azure AD, Google
+    - Custom/negotiated DPA and regional data residency
+    - Contractual SLAs (99.99% uptime target published)
+    - White-glove migration and named account manager
+api_pricing:
+  published: false
+  note: >-
+    The API & developers page (https://www.evercontact.com/api.html) carries no
+    price, quota or metered rate for the REST API. It ends in a "Get API access"
+    contact form ("Tell us what you're building and we'll set you up with API
+    keys, docs, and a sandbox to test against"), so API commercial terms are
+    quote-only.

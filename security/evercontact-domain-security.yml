@@ -1,14 +1,30 @@
-generated: '2026-07-19'
+generated: '2026-08-14'
 method: probed
 source: live DNS/TLS/HTTP probes of apis.yml + OpenAPI hosts
 hosts:
 - host: www.evercontact.com
   https: true
   tls_version: TLSv1.3
-  cert_expires: Aug 29 02:50:03 2026 GMT
+  cert_expires: Oct 28 04:08:48 2026 GMT
   hsts: false
 - host: api.evercontact.com
-  https: false
+  https: true
+  tls_cert_error: '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: Hostname mismatch,
+    certificate is not valid for ''api.evercon'
+  hsts: null
+  cert_subject_cn: b2b-lb.eu-prod.sonysnacloud.net
+  cert_issuer: 'C=US, O=Amazon, CN=Amazon RSA 2048 M01'
+  cert_sans:
+  - b2b-lb.eu-prod.sonysnacloud.net
+  http_status_verification_disabled: 403
+  server_header: awselb/2.0
+  finding: >-
+    The published API base host does not present an Evercontact certificate. DNS
+    resolves to an AWS ELB whose only certificate name is a Sony property
+    (b2b-lb.eu-prod.sonysnacloud.net), so TLS fails for every conforming client and
+    the load balancer answers 403 to everything. Reads as a dangling DNS record on
+    recycled AWS infrastructure. Full probe record in
+    well-known/evercontact-well-known.yml (api_host_finding).
 domains:
 - domain: evercontact.com
   dnssec: false

@@ -1,19 +1,50 @@
-generated: '2026-07-19'
+generated: '2026-08-14'
 method: searched
 source: https://www.evercontact.com/api.html
+sources:
+- https://www.evercontact.com/api.html
+- https://www.evercontact.com/security.html
+- https://www.evercontact.com/enterprise.html
+- https://status.evercontact.com
 versioning:
   scheme: uri-path
   current: v1
   docs: https://www.evercontact.com/api.html
+  policy_published: false
+  notes: >-
+    Every documented endpoint is prefixed /v1. No version-support window, no
+    version-negotiation header, and no history of prior versions is published. The
+    product itself is marketed as "Evercontact 4.0" on the homepage, which is a
+    product generation, not an API version.
 deprecation:
   policy_url: null
   sunset_header: null
-  notes: No public deprecation policy or RFC 8594 Sunset/Deprecation header support was found.
+  deprecation_header: null
+  notes: >-
+    No public deprecation policy and no RFC 8594 Sunset/Deprecation header support
+    was found. Probed /changelog, /changelog.html, /releases, /whats-new,
+    /roadmap and /roadmap.html on www.evercontact.com - all 404 on 2026-08-14.
+changelog:
+  published: false
+  notes: >-
+    No dated changelog or release-notes surface exists. The nearest thing is the
+    WordPress blog at https://blog.evercontact.com, which is marketing content on
+    an irregular cadence (most recent post 2026-06-29, "We rebuilt Evercontact
+    around one idea"), not a change record.
+roadmap:
+  published: false
 sla:
   url: https://www.evercontact.com/security.html
-  uptime_target: "99.99%"
+  uptime_target: '99.99%'
+  contractual: Enterprise plans only ("contractual SLAs reviewed by your legal and security teams")
 status_page: https://status.evercontact.com
 status_page_provider: Cachet
+status_page_api:
+  components: https://status.evercontact.com/api/v1/components
+  status: https://status.evercontact.com/api/v1/status
+  ping: https://status.evercontact.com/api/v1/ping
+  probed: '2026-08-14'
+  http_status: 200
 status_components:
 - Evercontact.com (Front)
 - Evercontact Tag API
@@ -25,4 +56,21 @@ status_feeds:
   rss: https://status.evercontact.com/rss
   atom: https://status.evercontact.com/atom
   subscribe: https://status.evercontact.com/subscribe
+status_observation:
+  checked: '2026-08-14'
+  state: All systems operational
+  incidents_last_7_days: 0
+  note: >-
+    The status page names an older service decomposition (Tag API, Merge API, Gmail
+    Connector API, Office365 analysis service) that does not match the endpoint
+    surface documented on the current api.html page (/v1/parse, /v1/enrich,
+    /v1/contacts, /v1/webhooks, /v1/events). Neither page reconciles the two.
 deprecated_operations: []
+x-findings:
+- >-
+  The published API base URL https://api.evercontact.com does not serve
+  Evercontact - DNS points at an AWS ELB presenting a Sony certificate
+  (b2b-lb.eu-prod.sonysnacloud.net). TLS fails for conforming clients and the host
+  answers 403. Recorded in full in well-known/evercontact-well-known.yml and
+  security/evercontact-domain-security.yml. Despite this, the status page reports
+  all API components operational.

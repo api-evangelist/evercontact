@@ -1,7 +1,18 @@
-generated: '2026-07-19'
+generated: '2026-08-14'
 method: searched
 source: https://www.evercontact.com/api.html
 docs: https://www.evercontact.com/api.html
+base_url:
+  published: https://api.evercontact.com
+  reachable: false
+  checked: '2026-08-14'
+  note: >-
+    The base URL published in the api.html curl example does not serve Evercontact.
+    DNS for api.evercontact.com resolves to an AWS ELB presenting a certificate for
+    b2b-lb.eu-prod.sonysnacloud.net (a Sony property); TLS fails for conforming
+    clients and the host returns 403 with verification disabled. Every convention
+    below is therefore documented-but-unexercised. See
+    well-known/evercontact-well-known.yml (api_host_finding).
 summary: >-
   Cross-cutting request/response semantics for the Evercontact REST API, captured
   from the published API documentation. The API is bearer-authenticated, versioned
@@ -41,10 +52,14 @@ webhooks:
   registration: POST /v1/webhooks
   see: asyncapi/evercontact-webhooks.yml
 rate_limiting:
-  documented: true
+  documented: false
+  see: rate-limits/evercontact-rate-limits.yml
   notes: >-
-    Endpoints are described as "rate-limit friendly"; specific limits, quotas, and
-    response headers (e.g. X-RateLimit-*) are not published on the docs page.
+    Endpoints are described only as "rate-limit friendly". No limit, window, burst,
+    429 behaviour or response header (X-RateLimit-*, RateLimit-*, Retry-After) is
+    published. The only published quotas are per-plan daily email-analysis limits
+    on the product (10 / 30 / unlimited), which are ingestion quotas, not API
+    request limits.
 error_envelope:
   format: json
   notes: >-

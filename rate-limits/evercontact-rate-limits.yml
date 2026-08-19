@@ -1,0 +1,89 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: Evercontact
+providerId: evercontact
+generated: '2026-08-14'
+created: '2026-08-14'
+modified: '2026-08-14'
+method: searched
+source: https://www.evercontact.com/pricing.html
+sources:
+  - https://www.evercontact.com/pricing.html
+  - https://www.evercontact.com/api.html
+tags:
+  - Rate Limiting
+  - Contact Data
+description: >-
+  Evercontact publishes NO HTTP rate limits for its REST API. The API page
+  describes the endpoints only as "idempotent, versioned, rate-limit friendly"
+  and names no numeric limit, window, burst allowance, 429 behaviour or
+  response-header family. What IS published is a per-account daily PROCESSING
+  QUOTA attached to each subscription tier - the number of conversational emails
+  the platform will analyze per day - which is a product quota on the ingestion
+  pipeline, not a limit on API calls. Those quotas are recorded below and clearly
+  labelled as such; they must not be read as API request limits. An integrator
+  cannot currently determine, from anything Evercontact publishes, how many API
+  requests per second/minute/day they may make or what an exhausted limit
+  returns.
+limit_count: 3
+headers:
+  documented: false
+  rate_limit_family: null
+  retry_after: null
+  request_id: null
+  note: >-
+    No X-RateLimit-*, RateLimit-* (draft IETF) or Retry-After header is
+    documented, and the live API host could not be exercised anonymously to
+    observe them (see probe below).
+responseCodes:
+  throttled: null
+  note: The status code returned on limit exhaustion is not published.
+limits:
+  - name: Conversational emails analyzed per day (Solo)
+    kind: plan-quota
+    applies_to: platform ingestion (mailbox analysis), not API requests
+    scope: account
+    metric: conversational_emails_analyzed
+    limit: 10
+    timeFrame: day
+    burst: null
+    plan: evercontact-daily-solo
+    source: https://www.evercontact.com/pricing.html
+  - name: Conversational emails analyzed per day (Pro)
+    kind: plan-quota
+    applies_to: platform ingestion (mailbox analysis), not API requests
+    scope: account
+    metric: conversational_emails_analyzed
+    limit: 30
+    timeFrame: day
+    burst: null
+    plan: evercontact-daily-pro
+    source: https://www.evercontact.com/pricing.html
+  - name: Conversational emails analyzed per day (Team)
+    kind: plan-quota
+    applies_to: platform ingestion (mailbox analysis), not API requests
+    scope: account
+    metric: conversational_emails_analyzed
+    limit: -1
+    unlimited: true
+    timeFrame: day
+    burst: null
+    plan: evercontact-daily-team
+    source: https://www.evercontact.com/pricing.html
+api_limits:
+  published: false
+  claim: '"Idempotent, versioned, rate-limit friendly" (https://www.evercontact.com/api.html)'
+  note: >-
+    Marketing language only. No number, window, or header is attached to the
+    claim anywhere on the public site.
+x-probe:
+  checked: '2026-08-14'
+  attempted_live_observation: true
+  host: https://api.evercontact.com
+  http_status: 403
+  tls: certificate hostname mismatch
+  note: >-
+    The published API base host could not be exercised anonymously to observe
+    rate-limit headers - see security/evercontact-domain-security.yml and
+    well-known/evercontact-well-known.yml for the probe record.

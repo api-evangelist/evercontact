@@ -1,24 +1,136 @@
-generated: '2026-07-19'
-method: searched
-host: https://www.evercontact.com
-documents:
-- path: /.well-known/security.txt
-  status: 404
-- path: /.well-known/openid-configuration
-  status: 404
-- path: /.well-known/oauth-authorization-server
-  status: 404
-- path: /.well-known/api-catalog
-  status: 404
-- path: /.well-known/ai-plugin.json
-  status: 404
-- path: /llms.txt
-  status: 404
-notes: >-
-  No /.well-known/ discovery documents were served by www.evercontact.com. The API
-  host api.evercontact.com did not resolve/respond during probing, so its
-  /.well-known/ surface could not be reached. No SecurityTxt found. No canonical
-  WellKnown pointer wired (nothing returned 200).
-api_host_probe:
+generated: '2026-08-14'
+method: probed
+source: live HTTP probes of every Evercontact host (2026-08-14)
+summary: >-
+  Nothing. Across five Evercontact hosts and every canonical discovery path, not a
+  single /.well-known/ document, llms.txt, OpenAPI, agent card or API catalog is
+  served. No WellKnown or SecurityTxt pointer is wired into apis.yml, because a
+  recorded absence is not a presence. The most consequential result here is on the
+  API host itself: api.evercontact.com resolves, but not to Evercontact - see
+  api_host_finding below.
+hosts:
+  - host: https://www.evercontact.com
+    reachable: true
+    documents:
+      - {path: /.well-known/security.txt, status: 404}
+      - {path: /.well-known/openid-configuration, status: 404}
+      - {path: /.well-known/oauth-authorization-server, status: 404}
+      - {path: /.well-known/api-catalog, status: 404}
+      - {path: /.well-known/ai-plugin.json, status: 404}
+      - {path: /.well-known/agent-card.json, status: 404}
+      - {path: /.well-known/agent.json, status: 404}
+      - {path: /llms.txt, status: 404}
+      - {path: /openapi.json, status: 404}
+      - {path: /openapi.yaml, status: 404}
+      - {path: /swagger.json, status: 404}
+      - {path: /api-docs, status: 404}
+      - {path: /docs, status: 404}
+      - {path: /robots.txt, status: 404}
+      - {path: /sitemap.xml, status: 404}
+  - host: https://evercontact.com
+    reachable: true
+    documents:
+      - {path: /.well-known/security.txt, status: 404}
+      - {path: /security.txt, status: 404}
+      - {path: /.well-known/agent-card.json, status: 404}
+      - {path: /llms.txt, status: 404}
+  - host: https://api.evercontact.com
+    reachable: false
+    tls_valid: false
+    documents:
+      - {path: /openapi.json, status: 403}
+      - {path: /openapi.yaml, status: 403}
+      - {path: /swagger.json, status: 403}
+      - {path: /v1/openapi.json, status: 403}
+      - {path: /api-docs, status: 403}
+      - {path: /docs, status: 403}
+      - {path: /redoc, status: 403}
+      - {path: /.well-known/agent-card.json, status: 403}
+      - {path: /.well-known/agent.json, status: 403}
+      - {path: /.well-known/security.txt, status: 403}
+      - {path: /.well-known/openid-configuration, status: 403}
+      - {path: /.well-known/oauth-authorization-server, status: 403}
+      - {path: /.well-known/oauth-protected-resource, status: 403}
+      - {path: /.well-known/api-catalog, status: 403}
+      - {path: /.well-known/ai-plugin.json, status: 403}
+      - {path: /llms.txt, status: 403}
+      - {path: /v1/parse, status: 403}
+    note: >-
+      Every status above required disabling TLS verification. With verification on,
+      the connection cannot be established at all.
+  - host: https://app.evercontact.com
+    reachable: true
+    documents:
+      - {path: /openapi.json, status: 404}
+      - {path: /swagger.json, status: 404}
+      - {path: /llms.txt, status: 404}
+      - {path: /.well-known/agent-card.json, status: 403}
+      - {path: /.well-known/agent.json, status: 403}
+      - {path: /.well-known/security.txt, status: 403}
+      - {path: /.well-known/openid-configuration, status: 403}
+      - {path: /.well-known/oauth-authorization-server, status: 403}
+      - {path: /.well-known/api-catalog, status: 403}
+      - {path: /.well-known/ai-plugin.json, status: 403}
+      - {path: /robots.txt, status: 200}
+  - host: https://blog.evercontact.com
+    reachable: true
+    documents:
+      - {path: /.well-known/security.txt, status: 404}
+      - {path: /.well-known/agent-card.json, status: 404}
+      - {path: /.well-known/agent.json, status: 404}
+      - {path: /llms.txt, status: 404}
+      - {path: /openapi.json, status: 404}
+      - {path: /robots.txt, status: 200}
+  - host: https://status.evercontact.com
+    reachable: true
+    documents:
+      - {path: /.well-known/security.txt, status: 404}
+      - {path: /.well-known/agent-card.json, status: 404}
+      - {path: /.well-known/agent.json, status: 404}
+      - {path: /llms.txt, status: 404}
+      - {path: /robots.txt, status: 200}
+      - {path: /api/v1/components, status: 200, note: 'Cachet status API - component health, not an Evercontact product API'}
+      - {path: /api/v1/status, status: 200, note: 'Cachet status API'}
+      - {path: /api/v1/ping, status: 200, note: 'Cachet status API'}
+
+api_host_finding:
+  severity: high
   host: api.evercontact.com
-  reachable: false
+  published_as: 'apis[].baseURL and the curl example on https://www.evercontact.com/api.html'
+  dns:
+    a_records: [98.91.145.143, 18.214.172.114]
+  tls:
+    handshake_verifies: false
+    certificate_subject_cn: b2b-lb.eu-prod.sonysnacloud.net
+    certificate_issuer: 'C=US, O=Amazon, CN=Amazon RSA 2048 M01'
+    subject_alternative_names: [b2b-lb.eu-prod.sonysnacloud.net]
+    not_before: '2025-10-30'
+    not_after: '2026-11-28'
+  http:
+    with_tls_verification: connection refused by the client - hostname mismatch
+    with_verification_disabled: 403 on every path
+    plain_http: 404
+    server_header: awselb/2.0
+  reading: >-
+    The DNS record for api.evercontact.com points at an AWS Elastic Load Balancer
+    whose only certificate name is b2b-lb.eu-prod.sonysnacloud.net - a Sony
+    property, not an Evercontact one. No standards-compliant HTTP client can
+    complete a TLS handshake with the base URL Evercontact publishes for its API,
+    and forcing past the certificate returns 403 from an ELB that is answering for
+    someone else. This reads as a stale/dangling DNS record left pointing at
+    recycled AWS infrastructure. It is recorded as a probe result, not as a claim
+    about intent.
+  consequence: >-
+    The documented REST API cannot be reached at its published base URL by any
+    client, authenticated or not. Every downstream probe in this pass - OpenAPI
+    discovery, /.well-known/, MCP tools/list, agent card, rate-limit headers -
+    was blocked by this one wall.
+  checked: '2026-08-14'
+
+pointer_decision:
+  well_known: not-wired
+  security_txt: not-wired
+  reason: >-
+    No path on any host returned a 200 carrying a real discovery document. Per the
+    pipeline contract the WellKnown/SecurityTxt pointers assert that the PROVIDER
+    serves that surface, so none is emitted.

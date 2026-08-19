@@ -1,16 +1,30 @@
-generated: '2026-07-19'
+generated: '2026-08-14'
 method: derived
 status: candidate
 source: https://www.evercontact.com/api.html
 summary: >-
-  No official hosted or remote MCP server was found for Evercontact (searched the
-  docs, npm @modelcontextprotocol, and MCP registries). This is a CANDIDATE tool
-  list derived from the documented REST API operations, one tool per endpoint, to
-  seed a future MCP server. Not a provider claim.
+  No official hosted or remote MCP server exists for Evercontact. Re-searched
+  2026-08-14: the docs and every marketing page carry no MCP mention; npm has zero
+  packages matching "evercontact" (registry.npmjs.org search, 0 results); PyPI,
+  RubyGems, Packagist, crates.io, NuGet and Maven Central are all empty; no
+  GitHub organization exists to host one; mcp.evercontact.com does not resolve;
+  and the published API host api.evercontact.com fails TLS and answers 403, so no
+  tools/list could be attempted against it. The homepage markets "Evercontact 4.0
+  - Now with AI Agents", but that is an internal CRM-hygiene agent, not an agent
+  interface a third party can call. The list below is a CANDIDATE tool set derived
+  one-for-one from the five documented REST endpoints, to seed a future server. It
+  is not a provider claim and no endpoint is invented.
 server:
   name: evercontact
-  transport: http
+  transport: null
   url: null
+deployment:
+  mode: none
+  endpoint: null
+  install: null
+  package: null
+  auth: unknown
+  verified: derived
 tools:
 - name: parse_signature
   description: Extract a structured contact from email signature text.
@@ -27,3 +41,16 @@ tools:
 - name: list_events
   description: Read the paginated stream of relationship-change events.
   source_operation: GET https://api.evercontact.com/v1/events
+input_schemas:
+  available: false
+  reason: >-
+    No OpenAPI, JSON Schema or parameter reference is published, so no tool
+    inputSchema can be derived without fabricating one. Request shapes must come
+    from the reference Evercontact issues with API access.
+crosswalk:
+  emitted: false
+  reason: >-
+    A tool crosswalk requires a real MCP (or GraphQL) surface bound to real
+    OpenAPI operationIds. Evercontact publishes neither, so there is nothing to
+    bind and no crosswalk is written.
+checked: '2026-08-14'

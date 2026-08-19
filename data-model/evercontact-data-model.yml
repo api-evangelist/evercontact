@@ -1,0 +1,108 @@
+generated: '2026-08-14'
+method: derived
+source: >-
+  Derived from the published response payloads and field lists on Evercontact's
+  own pages - the POST /v1/parse example on
+  https://www.evercontact.com/api.html, the enrichment field panel and relationship-
+  event example on https://www.evercontact.com/index.html, and the data-category
+  table in section 2 of https://www.evercontact.com/dpa-compliance.html. There is
+  no OpenAPI, JSON Schema or object reference published by Evercontact, so this
+  graph is reconstructed from documented examples only; every field below appears
+  verbatim in one of those three pages. Nothing is inferred from a spec because no
+  spec exists.
+docs: https://www.evercontact.com/api.html
+notation: >-
+  relationships use has_one / has_many / belongs_to with the reference field name;
+  direction is from the entity that owns the reference.
+confidence: medium
+caveat: >-
+  Field types, nullability, cardinality and the exact envelope are NOT published.
+  Treat this as the documented surface of the model, not a contract. An integrator
+  should confirm shapes against the reference Evercontact issues with API access.
+
+entities:
+  - name: Contact
+    id_prefix: contact_
+    domain: core
+    description: >-
+      The canonical, deduplicated person record - the unit returned by POST
+      /v1/parse, completed by POST /v1/enrich and fetched by GET /v1/contacts/:id.
+    id_prefix_evidence: >-
+      Homepage relationship-event example uses contact_8a31, contact_19f, contact_4cd.
+    fields:
+      - {name: name, source: 'api.html POST /v1/parse example', example: 'Amélie Marchetti'}
+      - {name: title, source: 'api.html POST /v1/parse example', example: 'Head of Strategic Accounts'}
+      - {name: company, source: 'api.html POST /v1/parse example', example: Altavia, note: 'reference to the Company record'}
+      - {name: email, source: 'api.html POST /v1/parse example'}
+      - {name: phone, source: 'api.html POST /v1/parse example', example: '+33 1 53 30 88 00'}
+      - {name: confidence, source: 'api.html POST /v1/parse example', example: 0.97, note: 'extraction confidence, 0-1 float'}
+      - {name: location, source: 'index.html enrichment panel', example: '75008 Paris, FR'}
+      - {name: seniority, source: 'dpa-compliance.html section 2 (Derived)'}
+      - {name: company_size, source: 'dpa-compliance.html section 2 (Derived) / index.html enrich step'}
+      - {name: office_location, source: 'dpa-compliance.html section 2 (Professional)'}
+  - name: Company
+    id_prefix: null
+    domain: core
+    description: >-
+      A resolved organization record linked to a contact. Surfaced on the homepage
+      as a distinct record type ("Altavia (company record) - Marketing services -
+      Paris") and referenced by the documented company.linked webhook event.
+    fields:
+      - {name: name, source: 'index.html company record'}
+      - {name: industry, source: 'index.html company record', example: 'Marketing services'}
+      - {name: location, source: 'index.html company record', example: Paris}
+      - {name: size, source: 'index.html enrich step', note: 'described as "company size"'}
+  - name: Event
+    id_prefix: null
+    domain: platform
+    description: >-
+      A relationship-change record. Delivered to registered webhook endpoints and
+      also readable as a paginated pull stream via GET /v1/events.
+    fields:
+      - {name: event, source: 'index.html email-intelligence example', example: intro.sent}
+      - {name: from, source: 'index.html email-intelligence example', example: contact_8a31, note: 'Contact reference'}
+      - {name: to, source: 'index.html email-intelligence example', example: '[contact_19f, contact_4cd]', note: 'array of Contact references'}
+      - {name: type, source: 'index.html email-intelligence example', example: warm_intro}
+      - {name: conf, source: 'index.html email-intelligence example', example: 0.94}
+  - name: WebhookSubscription
+    id_prefix: null
+    domain: platform
+    description: >-
+      A registered callback endpoint created by POST /v1/webhooks that receives
+      Event deliveries.
+    fields: []
+    note: No payload fields are published for this object.
+
+relationships:
+  - {from: Contact, to: Company, type: belongs_to, via: company, evidence: 'api.html parse example returns company on the contact'}
+  - {from: Company, to: Contact, type: has_many, via: company, evidence: 'company.linked event associates a contact with a company record'}
+  - {from: Event, to: Contact, type: has_one, via: from, evidence: 'index.html event example'}
+  - {from: Event, to: Contact, type: has_many, via: to, evidence: 'index.html event example'}
+  - {from: WebhookSubscription, to: Event, type: has_many, via: delivery, evidence: 'POST /v1/webhooks registers an endpoint to receive relationship events'}
+
+operations:
+  - {operation: 'POST /v1/parse', returns: Contact}
+  - {operation: 'POST /v1/enrich', returns: Contact}
+  - {operation: 'GET /v1/contacts/:id', returns: Contact}
+  - {operation: 'POST /v1/webhooks', returns: WebhookSubscription}
+  - {operation: 'GET /v1/events', returns: 'Event[] (paginated)'}
+
+data_categories:
+  source: https://www.evercontact.com/dpa-compliance.html
+  categories:
+    - {category: Identifiers, examples: 'Name, email address, phone number'}
+    - {category: Professional, examples: 'Job title, company, office location'}
+    - {category: Derived, examples: 'Seniority, company size, deduplicated identity'}
+  scope_note: >-
+    Evercontact's DPA states it reads inbound email signatures only - never the
+    message body, never outbound mail, never private conversation content - and
+    does not intentionally process special categories of data.
+
+gaps:
+  - No OpenAPI, JSON Schema or object reference is published.
+  - No field types, formats, nullability or enum values are published.
+  - No error envelope or pagination envelope is published for GET /v1/events.
+  - >-
+    The intro.sent / warm_intro event shown on the homepage does not appear in the
+    documented webhook event list (contact.created, contact.updated,
+    company.linked), so the full event taxonomy is unknown.

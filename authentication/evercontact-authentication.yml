@@ -1,4 +1,4 @@
-generated: '2026-07-19'
+generated: '2026-08-14'
 method: searched
 source: https://www.evercontact.com/api.html
 docs: https://www.evercontact.com/api.html
@@ -24,6 +24,17 @@ schemes:
   header: Authorization
   sources:
   - https://www.evercontact.com/api.html
+x-verification:
+  checked: '2026-08-14'
+  live_challenge_observed: false
+  note: >-
+    The auth model could not be confirmed against a live response: the published
+    API host api.evercontact.com fails TLS (certificate names a Sony load
+    balancer) and returns 403 to every path. Note also that a community client
+    written against the older Evercontact API used HTTP Basic Auth, so the
+    Bearer/ec_live_ model on the current api.html page represents a rebuilt
+    surface, not a continuously documented one. No scopes, token lifetime,
+    refresh model or key-rotation policy is published.
 mailbox_authorization:
   method: oauth2
   providers:

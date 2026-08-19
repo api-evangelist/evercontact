@@ -1,0 +1,88 @@
+generated: '2026-08-14'
+method: searched
+source: https://www.evercontact.com/api.html
+docs: https://www.evercontact.com/api.html
+description: >-
+  Registry sweep for first-party Evercontact client libraries. The provider's own
+  API page advertises SDKs - "First-party libraries for Node, Python, and Go, with
+  full TypeScript types and examples to get you to first call in minutes" - but
+  NONE of those libraries could be found in any public package registry, on any
+  Evercontact-controlled GitHub organization, or behind any download link on the
+  site. The claim is published; the artifact is not. Recorded as an honest zero
+  rather than as an inferred package name, and no `SDKs` pointer is wired into
+  apis.yml, because wiring one would credit Evercontact with client libraries a
+  developer cannot install.
+package_count: 0
+official_package_count: 0
+packages: []
+provider_claim:
+  url: https://www.evercontact.com/api.html
+  text: >-
+    "SDKs - Typed clients. First-party libraries for Node, Python, and Go, with
+    full TypeScript types and examples to get you to first call in minutes."
+  languages_claimed:
+    - javascript/typescript
+    - python
+    - go
+  verified: false
+registry_probes:
+  checked: '2026-08-14'
+  results:
+    - registry: npm
+      endpoint: https://registry.npmjs.org/-/v1/search?text=evercontact
+      status: 200
+      matches: 0
+      note: >-
+        Also probed the exact names evercontact, evercontact-sdk,
+        evercontact-node, @evercontact/sdk and @evercontact/node on
+        registry.npmjs.org - all 404.
+    - registry: pypi
+      endpoint: https://pypi.org/pypi/evercontact/json
+      status: 404
+      matches: 0
+    - registry: pkg.go.dev / proxy.golang.org
+      endpoint: https://proxy.golang.org/github.com/evercontact/evercontact-go/@v/list
+      status: 404
+      matches: 0
+    - registry: maven-central
+      endpoint: https://search.maven.org/solrsearch/select?q=evercontact
+      status: 200
+      matches: 0
+    - registry: nuget
+      endpoint: https://azuresearch-usnc.nuget.org/query?q=evercontact
+      status: 200
+      matches: 0
+    - registry: rubygems
+      endpoint: https://rubygems.org/api/v1/search.json?query=evercontact
+      status: 200
+      matches: 0
+    - registry: packagist
+      endpoint: https://packagist.org/search.json?q=evercontact
+      status: 200
+      matches: 0
+    - registry: crates.io
+      endpoint: https://crates.io/api/v1/crates?q=evercontact
+      status: 200
+      matches: 0
+source_control:
+  github_organization: null
+  note: >-
+    No GitHub organization is linked from the Evercontact site, and the candidate
+    org names github.com/evercontact, github.com/onemorecompany and github.com/kwaga
+    all return 404. The org github.com/one-more-company exists but is an unrelated
+    party (its single public repo is a PySpark/Trino Docker template) and is NOT
+    Evercontact / One More Company Inc.
+third_party:
+  - language: python
+    name: evercontact
+    url: https://github.com/ronbeltran/evercontact
+    official: false
+    version: null
+    published: null
+    registry: null
+    note: >-
+      Community Python client for the legacy Evercontact API, last pushed
+      2015-10-02. Never published to PyPI (pypi.org/pypi/evercontact/json returns
+      404), so there is no registry version or release date to record. Written
+      against the older HTTP Basic Auth API, not the current Bearer-token /v1
+      surface, and is not maintained by Evercontact.

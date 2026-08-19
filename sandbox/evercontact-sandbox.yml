@@ -1,17 +1,41 @@
-generated: '2026-07-19'
+generated: '2026-08-14'
 method: searched
 source: https://www.evercontact.com/api.html
+sources:
+- https://www.evercontact.com/api.html
+- https://www.evercontact.com/pricing.html
 summary: >-
-  Evercontact documents sandbox access and a 14-day free trial (no credit card).
-  Live API tokens carry an ec_live_ prefix, implying a separate test/sandbox token
-  namespace. No published magic test values, test signatures, or fixtures were
-  found on the public docs page, so none are recorded here (no fabrication).
+  Evercontact mentions a sandbox but does not publish one. The API page ends in a
+  contact form whose copy is "Tell us what you're building and we'll set you up
+  with API keys, docs, and a sandbox to test against" - i.e. sandbox access, and
+  the reference itself, are issued through a sales conversation. There is no
+  self-serve test environment, no test host, no published test credentials, no
+  magic test values and no fixture tooling anywhere on the public site. The only
+  self-serve trial is on the end-user product, not the API.
+sandbox_access:
+  self_serve: false
+  gate: sales form ("Get API access")
+  gate_url: https://www.evercontact.com/api.html#contact
+  test_host: null
+  console_or_playground: null
+  quote: >-
+    "Tell us what you're building and we'll set you up with API keys, docs, and a
+    sandbox to test against."
 test_vs_live:
   live_token_prefix: ec_live_
+  live_token_evidence: >-
+    Published verbatim in the curl example on the API page:
+    -H "Authorization: Bearer ec_live_..."
   test_token_prefix: null
-  notes: The ec_live_ prefix is published; a corresponding test prefix is implied but not documented.
+  notes: >-
+    The ec_live_ prefix implies a parallel test namespace, but no test prefix is
+    documented. Not recorded as ec_test_ - that would be a guess.
 free_trial:
+  applies_to: Evercontact Daily (the end-user product), not the API
   length_days: 14
   credit_card_required: false
-sandbox_access: documented ("Free trial and sandbox access available")
+  cancel_anytime: true
+  source: https://www.evercontact.com/pricing.html
 test_values: []
+fixtures: []
+time_simulation: null

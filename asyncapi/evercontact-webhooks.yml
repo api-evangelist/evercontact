@@ -1,4 +1,4 @@
-generated: '2026-07-19'
+generated: '2026-08-14'
 method: searched
 source: https://www.evercontact.com/api.html
 type: Webhooks
@@ -21,7 +21,25 @@ events:
   description: An existing person record was enriched or changed.
 - name: company.linked
   description: A contact was associated with a resolved company/organization record.
+undocumented_events_observed:
+- name: intro.sent
+  source: https://www.evercontact.com/index.html
+  note: >-
+    Appears in the "Email intelligence" illustration on the homepage with the shape
+    {event, from, to[], type, conf} and type "warm_intro". It is NOT in the
+    documented event list on api.html, so the real event taxonomy is larger than
+    the three names published. Recorded as an observation, not as a supported event.
 asyncapi_document: null
+delivery:
+  retries: not published
+  signing: not published
+  ordering: not published
+  replay: 'GET /v1/events (paginated pull) is the documented catch-up mechanism'
 notes: >-
-  Payload schemas for these events are not published on the public docs page; only
-  the event names and delivery model are documented.
+  Payload schemas, delivery retry policy, signature verification and event ordering
+  are not published on the public docs page; only the event names and the delivery
+  model are documented. No AsyncAPI document is served on any Evercontact host
+  (probed 2026-08-14). The registration and pull operations could not be exercised:
+  api.evercontact.com fails TLS and returns 403 - see
+  well-known/evercontact-well-known.yml.
+checked: '2026-08-14'
