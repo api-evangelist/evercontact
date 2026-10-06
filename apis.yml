@@ -51,7 +51,7 @@ accessModel:
 image: https://www.evercontact.com/assets/favicon-32x32.png
 specificationVersion: '0.23'
 created: '2026-07-17'
-modified: '2026-08-14'
+modified: '2026-10-06'
 tags:
 - Company
 - Contact Management
@@ -101,6 +101,8 @@ maintainers:
 - FN: APIs.json
   email: info@apis.io
 common:
+- url: https://blog.evercontact.com/feed/
+  type: BlogRSS
 - type: Website
   url: https://www.evercontact.com
 - type: DeveloperPortal
