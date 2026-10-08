@@ -130,3 +130,46 @@ api_pricing:
     contact form ("Tell us what you're building and we'll set you up with API
     keys, docs, and a sandbox to test against"), so API commercial terms are
     quote-only.
+x-canonical:
+  generated: '2026-10-08'
+  vocabulary: all/0-working/economics/plans-canonical.yml
+  models:
+  - one-time
+  - subscription
+  units: []
+  plans:
+  - name: Solo
+    access: other
+    model: subscription
+    model_how: stated
+    units: []
+    periods:
+    - year
+  - name: Pro
+    access: other
+    model: subscription
+    model_how: stated
+    units: []
+    periods:
+    - year
+  - name: Team
+    access: other
+    model: subscription
+    model_how: stated
+    units: []
+    periods:
+    - year
+  - name: ContactRescue - 2-Year Recovery
+    access: other
+    model: one-time
+    model_how: stated
+    units: []
+    periods:
+    - one-time
+  - name: ContactRescue+ - 5-Year Recovery
+    access: other
+    model: one-time
+    model_how: stated
+    units: []
+    periods:
+    - one-time
