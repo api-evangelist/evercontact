@@ -73,6 +73,10 @@ apis:
   baseURL: https://api.evercontact.com
   tags:
   - Contact Data
+  - Data Enrichment
+  - Signature Parsing
+  tags_raw:
+  - Contact Data
   - Enrichment
   - Signature Parsing
   properties:
