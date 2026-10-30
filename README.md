@@ -64,6 +64,121 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Evercontact is a company surfaced as a portfolio company of seedcamp and added to the API Evangelist network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+Evercontact is an AI-powered contact intelligence platform that automatically extracts, enriches, and syncs contact data from email signatures across Google Workspace and Microsoft 365. A multilingual model parses names, titles, phone numbers, and postal addresses from the signature block of every email in 30+ languages, deduplicates and enriches the resulting person records, and continuously syndicates clean contacts to CRMs (Salesforce, HubSpot, Pipedrive, Zoho, Microsoft Dynamics, Attio) and address books. Evercontact also exposes a REST API (parse, enrich, contacts, webhooks, events) and a webhook event stream for custom integrations, with SOC 2 Type II, Google CASA Tier 2, and GDPR compliance.
 
-Backed by: seedcamp — http://evercontact.com
+**Areas:** Company · Contact Management · Contact Data · Data Enrichment · Email · Signature Parsing · Data Extraction · CRM
+
+## Evercontact on APIs.io
+
+Everything profiled for Evercontact is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/evercontact/](https://apis.io/providers/evercontact/)** — or go straight to one of the APIs or properties below.
+
+### APIs (1)
+
+- [Evercontact API](https://apis.io/apis/evercontact/evercontact-api/) — REST API that extracts structured contact data from email signature text (parse), completes a known contact with verified details (enrich), retrieves…
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### AsyncAPI (1)
+
+Event-driven and webhook contracts.
+
+- [Evercontact Webhooks](https://apis.io/asyncapis/evercontact/evercontact-webhooks/)
+
+#### MCP servers (1)
+
+Model Context Protocol servers that expose the API to agents.
+
+- [evercontact](https://apis.io/servers/evercontact/evercontact/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Evercontact Authentication](https://apis.io/security/evercontact/evercontact-authentication/)
+- [Evercontact Domain Security](https://apis.io/security/evercontact/evercontact-domain-security/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Evercontact Plans Pricing](https://apis.io/plans/evercontact/evercontact-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Evercontact Rate Limits](https://apis.io/rate-limits/evercontact/evercontact-rate-limits/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.evercontact.com)
+- [Documentation](https://www.evercontact.com/api.html)
+- [API reference](https://www.evercontact.com/api.html)
+- [Pricing](https://www.evercontact.com/pricing.html)
+- [Sign up](https://www.evercontact.com/pricing.html)
+- [Support](https://www.evercontact.com/contact.html)
+- [Blog](https://blog.evercontact.com)
+- [Security](https://www.evercontact.com/security.html)
+- [Compliance](https://www.evercontact.com/dpa-compliance.html)
+- [Terms of service](https://www.evercontact.com/terms.html)
+- [Privacy policy](https://www.evercontact.com/privacy.html)
+- [Status](https://status.evercontact.com)
+
+## API Evangelist rating
+
+**Kin Score 58.6** — strong · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 73.2 |
+| Contract quality | 44.2 |
+| Contract governance | 18.2 |
+| Operational transparency | 65.8 |
+| Developer ergonomics | 52.4 |
+| Access clarity | 84.2 |
+
+**Agent readiness 25.5** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | — |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | documented (partial credit) |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | documented (partial credit) |
+| Event Surface Described | yes |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | na |
+| Operation Distinctiveness | na |
+
+**Regulatory alignment 29.4** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/evercontact/](https://apis.io/providers/evercontact/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Evercontact: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/evercontact/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
